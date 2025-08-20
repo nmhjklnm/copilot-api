@@ -1,5 +1,38 @@
 # Copilot API Proxy
 
+```bash
+# 1. 打开代理（clash）
+clashon
+
+# 2. 在项目根目录（含 Dockerfile）
+echo 'registry=https://registry.npmmirror.com' > .npmrc
+
+# 3. 修改 Dockerfile，让 .npmrc 也能复制进去
+sed -i 's/COPY .\/package.json .\/bun.lock .\//COPY .\/package.json .\/bun.lock .\/\nCOPY .\/.npmrc .\//' Dockerfile
+
+# 4. 开启 clash tun
+clash tun on
+
+# 5. 拉取代码并构建镜像
+git clone https://github.com/ericc-ch/copilot-api.git
+cd copilot-api
+docker build -t copilot-api .
+
+# 6. 创建数据目录
+mkdir -p ~/copilot-data
+
+# 7. 运行容器
+docker run -d \
+  --name copilot-api \
+  --restart unless-stopped \
+  -p 4141:4141 \
+  -v $(pwd)/copilot-data:/root/.local/share/copilot-api \
+  copilot-api start
+clash tun off
+
+```
+
+
 > [!WARNING]
 > This is a reverse-engineered proxy of GitHub Copilot API. It is not supported by GitHub, and may break unexpectedly. Use at your own risk.
 
