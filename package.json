@@ -23,14 +23,17 @@
   ],
   "scripts": {
     "build": "tsup",
+    "build:vercel": "tsc",
     "dev": "bun run --watch ./src/main.ts",
+    "dev:vercel": "vercel dev",
     "knip": "knip-bun",
     "lint": "eslint . --cache",
     "prepack": "bun run build",
     "prepare": "simple-git-hooks",
     "release": "bumpp && bun publish --access public",
     "start": "NODE_ENV=production bun run ./src/main.ts",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "vercel:deploy": "vercel --prod"
   },
   "simple-git-hooks": {
     "pre-commit": "bunx lint-staged"
@@ -51,6 +54,7 @@
   "devDependencies": {
     "@echristian/eslint-config": "^0.0.52",
     "@types/bun": "^1.2.19",
+    "@vercel/node": "^5.3.13",
     "bumpp": "^10.2.2",
     "eslint": "^9.33.0",
     "knip": "^5.62.0",

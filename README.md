@@ -44,6 +44,19 @@ A reverse-engineered proxy for the GitHub Copilot API that exposes it as an Open
 
 https://github.com/user-attachments/assets/7654b383-669d-4eb9-b23c-06d7aefee8c5
 
+## Vercel One-Click Deployment
+
+You can deploy this project to Vercel with a single click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnmhjklnm%2Fcopilot-api&env=GITHUB_TOKEN&envDescription=GitHub%20Personal%20Access%20Token%20for%20Copilot%20API&envLink=https%3A%2F%2Fgithub.com%2Fsettings%2Ftokens&project-name=copilot-api&repository-name=copilot-api)
+
+### Required Environment Variables for Vercel:
+
+- `GITHUB_TOKEN`: Your GitHub Personal Access Token (generate using `npx copilot-api@latest auth`)
+- `ACCOUNT_TYPE`: (Optional) Your account type: `individual`, `business`, or `enterprise` (default: `individual`)
+
+For detailed deployment instructions in Chinese, see [DEPLOY_GUIDE_CN.md](./DEPLOY_GUIDE_CN.md).
+
 ## Prerequisites
 
 - Bun (>= 1.2.x)
